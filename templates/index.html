@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!---verification--->
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Budget</th>
+        <th>Dépenses</th>
+        <th>Solde</th>
+      </tr>
+    </thead>
+    
+    <tbody>    
+      {% for eles in management %}
+      <tr>
+        <td>{{ eles.budget }}</td>
+        <td>{{ eles.spent }}</td>
+        <td>{{ eles.solde }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+</div>
+
+
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Montant</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      {% for eles in rev_data %}
+      <tr>
+        <th>{{ eles.title }}</td>
+        <th>{{ eles.amount }}</td>
+        <th>
+        
+        <th>
+            <a href="/delete/{{ele.id}}">Supprimer</a>
+        </th>   
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+</div>
+
+
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Montant</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      {% for eles in dep_data %}
+      <tr>
+        <th>{{ eles.title }}</td>
+        <th>{{ eles.amount }}</td>
+        <th>
+        
+        <th>
+            <a href="/delete/{{ele.id}}">Supprimer</a>
+        </th>   
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+</div>
+
+{% endblock content %}
+
