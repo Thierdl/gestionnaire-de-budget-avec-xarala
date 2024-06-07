@@ -41,10 +41,25 @@ class Depense(db.Model):
 def index():
 
     rev_data = Revenu.query.all() 
-    #management = Management.query.all()
     dep_data = Depense.query.all()
-    
-    return render_template("index.html", rev_data=rev_data, dep_data=dep_data)
+
+    budget = 0
+    spent = 0
+    for revenue in rev_data:
+        budget+=revenue.amount
+
+    for depense in dep_data:
+        spent+=depense.amount
+
+    solde = budget - spent 
+    try:
+        gestion = Management(budget=budget, spent=spent, solde=solde)
+        db.session.add(gestion)
+        db.session.commit()
+    except Exception:
+        return "Erreur lors de l'ajout à la base de données"
+
+    return render_template("index.html", rev_data=rev_data, dep_data=dep_data, budget=budget, spent=spent, solde=solde)
     
 
 
@@ -94,46 +109,37 @@ def table_depense():
 
 @app.route("/delete/<int:id>/")
 def delete(id):
-
-    table2 = Revenu.query.get_or_404(id)
+    table1 = Revenu.query.get_or_404(id)   
+    table2 = Depense.query.get_or_404(id)  
+      
     try:
+        db.session.delete(table1)
         db.session.delete(table2)
+
         db.session.commit()
+
         return redirect("/")
 
     except Exception:
         return "Une erreur s'est produit"
     
 
-@app.route("/calcul")
-def operation():
-    total_revenu = Revenu.query.all()
-    total_depense = Depense.query.all()
+@app.route("/update<int:id>/", methods=["GET", "POST"])
+def update(id):
+    reve = Revenu.query.get_or_404(id)
+    if request.method == "POST":
+        reve.title=request.form["title"]
+        reve.amount=request.form["amount"]
 
-    budget_s = 0
-    spent_s = 0
-
-    for revenue in total_revenu:
-        budget_s+=revenue.amount_s
+        try:
+            db.session.commit()
+            return redirect("/")
         
+        except Exception:
+            print("erreur")
 
-    for depenses in total_depense:
-        spent_s+=depenses.amount
+    return render_template("update.html", reve=reve)
     
-
-    solde_s = budget_s - spent_s
-    
-    try:
-        management_s = Management(budget=budget_s, spent=spent_s, solde=solde_s)
-        db.session.add(management_s)
-        db.session.commit()
-    except Exception as e:
-        return f"Vous avez une erreur de type: {e}"
-    management = Management.query.all()
-    return render_template("index.html", management=management)#budget_s=budget_s, spent_s=spent_s, sum_solde=sum_solde)
-
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
