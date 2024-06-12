@@ -2,60 +2,57 @@
 
 {% block content %}
 
-<!---verification--->
+<div class="container text-center pt-4">
+  <div class="row g-5">
 
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Budget</th>
-        <th>Dépenses</th>
-        <th>Solde</th>
-      </tr>
-    </thead>
-    
-    <tbody>    
-      
-      <tr>
-        <td>{{ budget }}</td>
-        <td>{{ spent }}</td>
-        <td>{{ solde }}</td>
-      </tr>
-   
-    </tbody>
+    <div class="col-md-4">
+      <div class="p-2 border">Budget</div>
+      <div class="p-4 border">{{ budget }} F CFA</div>
+    </div>
 
-  </table>
+    <div class="col-md-4">
+      <div class="p-2 border">Dépense</div>
+      <div class="p-4 border">{{ spent }} F CFA</div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="p-2 border">Solde</div>
+      <div class="p-4 border">{{ solde }} F CFA</div>
+    </div>
+
+  </div>
 </div>
 
 
+<div class="container pt-5">
+<h4>Liste des Revenus</h4>
+  <table class="table table-bordered">
 
-<div class="table-responsive">
-  <h4>Liste des Revenus</h4>
-  <table class="table">
     <thead>
-      <tr>
-        <th>Title</th>
-        <th>Montant</th>
-        <th>Action</th>
+      <tr class="colorer">  
+        <th class="col-title">Titre</th>
+        <th class="col-amount">Montant</th>
+        <th class="col-action">Action</th>
       </tr>
     </thead>
-    
+
     <tbody>
-      {% for eles in rev_data %}
-      <tr>
-        <th>{{ eles.title }}</th>
-        <th>{{ eles.amount }}</th>
-        
-        <th>
-            <a href="/delete/{{eles.id}}">Supprimer</a>
-        </th>  
+      {% for revenus in rev_data %}
+        <td>{{ revenus.title }}</td>
+        <td>{{ revenus.amount }} F CFA</td>
+        <td>
+          <a href="{{ url_for('delete_revenu', id=revenus.id) }}" class="btn btn-danger">Supprimer</a>
+        </td>  
       </tr>
       {% endfor %}
-    </tbody>
-
-    <tbody>
+  
       <tr>
-        <th><a href="/page2">ajouter</a></th>
+        <td class="add">
+          <a href="/page2">AJOUTER REVENU</a>
+          <a href="/page2" class="fa-solid fa-circle-plus"></a>
+        </td>
+        <td></td>
+        <td></td>
       </tr>
     </tbody>
 
@@ -63,42 +60,41 @@
 </div>
 
 
+<div class="container pt-5">
+<h4>Liste des Dépenses</h4>
+  <table class="table table-bordered">
 
-<div class="table-responsive">
-  <h4>Liste des Dépenses</h4>
-  <table class="table">
     <thead>
-      <tr>
-        <th>Title</th>
-        <th>Montant</th>
-        <th>Action</th>
+      <tr class="colorer">
+        <th class="col-title">Titre</th>
+        <th class="col-amount">Montant</th>
+        <th class="col-action">Action</th>
       </tr>
     </thead>
     
     <tbody>
-
-      {% for ele in dep_data %}
+      {% for spents in dep_data %}
       <tr>
-        <th>{{ ele.title }}</th>
-        <th>{{ ele.amount }}</th>
-        
-        <th>
-            <a href="/delete/{{ele.id}}">Supprimer</a>
-        </th> 
-
+        <td>{{ spents.title }}</td>
+        <td>{{ spents.amount }} F CFA</td>
+        <td>
+          <a href="{{ url_for('delete_depense', id=spents.id) }}" class="btn btn-danger">Supprimer</a>
+        </td>
       </tr>
       {% endfor %}
 
-    </tbody>  
-
-    <tbody>
       <tr>
-        <th><a href="/page3">ajouter</a></th>
-      </tr>
+        <td class="add">
+          <a href="/page3">AJOUTER DEPENSE</a>
+          <a href="/page3" class="fa-solid fa-circle-plus"></a>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>     
     </tbody>
-
   </table>
 </div>
+
 
 {% endblock content %}
 

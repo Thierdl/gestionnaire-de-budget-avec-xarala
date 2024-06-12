@@ -1,29 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h4>Liste des dépenses</h4>
-
-<form action="{{ url_for('table_depense') }}" method="POST">
-   
-    <div>
-        <input type="hidden" name="type_data" value="depense">
-
-        <div class = "form-row">
-            <label for="title">Titre</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="titre" required>
-        </div>
-
-        <div class = "form-row">
-            <label for="amount">Montant</label>
-            <input type="number" class="form-control" id="amount" name="amount" placeholder="Sommes" required/>  
-        </div>
-
-        <div>
-            <button type="submit" name="action" value="ajouter">Valider</button>
-        <div>
-
-    </div>
-</form>
-
+<h4 class="text-center text-success mt-5">Liste des Dépenses</h4>
+<div class="container">
+  <form action="{{ url_for('table_depense') }}" method="POST">
+    <input type="hidden" name="type_data" value="depense">
+    {% include "partials/_form.html" %}
+  </form>
+</div>
 
 {% endblock content %}

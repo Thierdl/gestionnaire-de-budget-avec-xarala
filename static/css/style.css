@@ -1,0 +1,60 @@
+body{
+  margin-top: 2rem;
+}
+body h1{
+  color: rgb(218, 203, 5);
+  font-weight: bold;
+}
+
+body span, p{
+  color: #25554d;
+  font-weight: bold;
+}
+
+.p-2{
+  background-color: #25554d;
+  color: white;
+}
+
+.container h4{
+  color: rgb(218, 203, 5);
+}
+
+.col-title {
+  width: 30%;
+}
+
+.col-amount {
+  width: 30%;
+}
+
+.col-action {
+  width: 30%;
+}
+
+.colorer th{
+  background-color: #25554d;
+  color: white; 
+
+}
+
+.add a{
+  text-decoration: none;
+  color: rgb(218, 203, 5);
+}
+
+.formul div{
+  max-width: 40%;
+  margin:auto;
+  text-decoration: none;
+  padding-top: 1rem;
+}
+
+.validation button{
+  width: 100%;
+  border: none;
+  margin:auto; 
+}
+
+
+

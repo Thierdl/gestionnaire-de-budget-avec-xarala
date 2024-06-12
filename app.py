@@ -1,11 +1,11 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect,  url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///budgetmanager.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)    #connexion de l'appli avec la base de données
+db = SQLAlchemy(app)    
 
 
 class Management(db.Model):
@@ -39,7 +39,6 @@ class Depense(db.Model):
 
 @app.route("/") 
 def index():
-
     rev_data = Revenu.query.all() 
     dep_data = Depense.query.all()
 
@@ -52,6 +51,7 @@ def index():
         spent+=depense.amount
 
     solde = budget - spent 
+    
     try:
         gestion = Management(budget=budget, spent=spent, solde=solde)
         db.session.add(gestion)
@@ -76,7 +76,7 @@ def table_revenu():
                 db.session.add(table1)    
                 db.session.commit() 
                 
-                return redirect("/page2")
+                return redirect(url_for('table_revenu'))
             
             except Exception :
                 return "Une erreur s'est produit"
@@ -98,7 +98,7 @@ def table_depense():
                 db.session.add(table2)      
                 db.session.commit()   
               
-                return redirect("/page3")
+                return redirect(url_for('table_depense'))
 
             except Exception :
                 return "Une erreur s'est produit"
@@ -107,22 +107,31 @@ def table_depense():
 
    
 
-@app.route("/delete/<int:id>/")
-def delete(id):
-    table1 = Revenu.query.get_or_404(id)   
-    table2 = Depense.query.get_or_404(id)  
-      
+@app.route("/delete_revenu/<int:id>/")
+def delete_revenu(id):
+    table1 = Revenu.query.get_or_404(id)
+    
     try:
         db.session.delete(table1)
-        db.session.delete(table2)
-
         db.session.commit()
-
-        return redirect("/")
-
+        return redirect(url_for('index'))  
     except Exception:
-        return "Une erreur s'est produit"
+        return "---Erreur---"
+
+
+
+@app.route("/delete_depense/<int:id>/")
+def delete_depense(id):
+    table2 = Depense.query.get_or_404(id)
     
+    try:
+        db.session.delete(table2)
+        db.session.commit()
+        return redirect(url_for("index"))
+    except Exception:
+        return "---Erreur---"
+
+
 
 @app.route("/update<int:id>/", methods=["GET", "POST"])
 def update(id):
@@ -143,6 +152,3 @@ def update(id):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-

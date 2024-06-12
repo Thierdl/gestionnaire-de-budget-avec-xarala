@@ -1,25 +1,20 @@
-<!--table_page 1-->
-<form action="{{ url_for('table_revenu') }}" method="POST">
-   
-    <div>
-        <input type="hidden" name="type_data" value="revenu">
-
-        <div class = "form-row">
-            <label for="title">Titre</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="titre" required>
-        </div>
-
-        <div class = "form-row">
-            <label for="amount">Montant</label>
-            <input type="number" class="form-control" id="amount" name="amount" placeholder="Sommes" required/>  
-        </div>
-
-        <div>
-            <button type="submit" name="action" value="ajouter">Valider</button>
-        <div>
-
+<div class="formul">
+    <div class = "form-row-mb-3">
+        <label for="title"  class="text-success">Titre</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="titre" required>
     </div>
-</form>
+
+    <div class = "form-row">
+        <label class="text-success" for="amount">Montant</label>
+        <input type="number" class="form-control" id="amount" name="amount" placeholder="Sommes" required/>  
+    </div>
+
+    <div class="validation">
+        <button class="bg-success btn btn-primary mt-4" type="submit" name="action" value="ajouter">Valider</button>
+    <div>
+</div>
+
+
 
 
 
