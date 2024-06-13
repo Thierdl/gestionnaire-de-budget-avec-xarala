@@ -45,24 +45,24 @@ def index():
     budget = 0
     spent = 0
     for revenue in rev_data:
-        budget+=revenue.amount
+        budget+=revenue.amount  #Incrementation_pour_obtenir_la_somme_total_des_revenus
 
-    for depense in dep_data:
-        spent+=depense.amount
+    for depense in dep_data:    
+        spent+=depense.amount   #Incrementation_pour_obtenir_la_somme_total_des_depenses
 
-    solde = budget - spent 
+    solde = budget - spent   #OPERATION_DIFFERENCE _ENTRE8_TOTAL_REVENU_ET_TOTAL_DEPENSE
     
     try:
         gestion = Management(budget=budget, spent=spent, solde=solde)
         db.session.add(gestion)
         db.session.commit()
     except Exception:
-        return "Erreur lors de l'ajout à la base de données"
+        return "Erreur: données on ajouter à la base de données"
 
     return render_template("index.html", rev_data=rev_data, dep_data=dep_data, budget=budget, spent=spent, solde=solde)
     
 
-
+#REVENU
 @app.route("/page2", methods=["GET", "POST"])
 def table_revenu():
     if request.method == "POST" :           
@@ -84,7 +84,7 @@ def table_revenu():
     return render_template("revenu.html")  
 
 
-
+#DEPENSE
 @app.route("/page3", methods=["GET", "POST"])
 def table_depense():
     if request.method == "POST" :           
@@ -106,7 +106,7 @@ def table_depense():
     return render_template("depense.html")  
 
    
-
+#DELETE_REVENU
 @app.route("/delete_revenu/<int:id>/")
 def delete_revenu(id):
     table1 = Revenu.query.get_or_404(id)
@@ -119,7 +119,7 @@ def delete_revenu(id):
         return "---Erreur---"
 
 
-
+#DELETE_DEOPENSE
 @app.route("/delete_depense/<int:id>/")
 def delete_depense(id):
     table2 = Depense.query.get_or_404(id)
@@ -130,25 +130,6 @@ def delete_depense(id):
         return redirect(url_for("index"))
     except Exception:
         return "---Erreur---"
-
-
-
-@app.route("/update<int:id>/", methods=["GET", "POST"])
-def update(id):
-    reve = Revenu.query.get_or_404(id)
-    if request.method == "POST":
-        reve.title=request.form["title"]
-        reve.amount=request.form["amount"]
-
-        try:
-            db.session.commit()
-            return redirect("/")
-        
-        except Exception:
-            print("erreur")
-
-    return render_template("update.html", reve=reve)
-    
 
 if __name__ == "__main__":
     app.run(debug=True)

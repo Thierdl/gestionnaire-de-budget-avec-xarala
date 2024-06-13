@@ -1,21 +1,29 @@
 body{
-  margin-top: 2rem;
+  margin: auto;
 }
-body h1{
+.head h1{
   color: rgb(218, 203, 5);
   font-weight: bold;
 }
 
-body span, p{
+.head span, p{
   color: #25554d;
   font-weight: bold;
 }
 
-.p-2{
+/** TABLE_BUDGET **/
+.col-md-4 .p-2 {
   background-color: #25554d;
   color: white;
+  box-shadow: 2px 0 2px rgb(100, 100, 100);
 }
 
+.col-md-4 .p-4 {
+  box-shadow: 2px 2px 3px rgb(100, 100, 100);
+}
+
+
+/** TABLE_REVENU_&_DEPENSE **/
 .container h4{
   color: rgb(218, 203, 5);
 }
@@ -34,15 +42,18 @@ body span, p{
 
 .colorer th{
   background-color: #25554d;
-  color: white; 
-
+  color: white;
 }
 
-.add a{
+
+/** BUTTON_ADD **/
+.button_add a{
   text-decoration: none;
   color: rgb(218, 203, 5);
 }
 
+
+/** style_FORMULE_ADD **/
 .formul div{
   max-width: 40%;
   margin:auto;
@@ -50,6 +61,8 @@ body span, p{
   padding-top: 1rem;
 }
 
+
+/** BUTTON_VALIDATION **/
 .validation button{
   width: 100%;
   border: none;

@@ -1,29 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<!--TABLE_BUDGET_("/")-->
 <div class="container text-center pt-4">
   <div class="row g-5">
-
+    
     <div class="col-md-4">
-      <div class="p-2 border">Budget</div>
-      <div class="p-4 border">{{ budget }} F CFA</div>
+      <div class="p-2">Budget</div>
+      <div class="p-4">{{ budget }} F CFA</div>
     </div>
 
     <div class="col-md-4">
-      <div class="p-2 border">Dépense</div>
-      <div class="p-4 border">{{ spent }} F CFA</div>
+      <div class="p-2">Dépense</div>
+      <div class="p-4">{{ spent }} F CFA</div>
     </div>
 
     <div class="col-md-4">
-      <div class="p-2 border">Solde</div>
-      <div class="p-4 border">{{ solde }} F CFA</div>
+      <div class="p-2">Solde</div>
+      <div class="p-4">{{ solde }} F CFA</div>
     </div>
 
   </div>
 </div>
 
-
+<!--TABLE_REVENU_("/")-->
 <div class="container pt-5">
 <h4>Liste des Revenus</h4>
   <table class="table table-bordered">
@@ -60,6 +60,7 @@
 </div>
 
 
+<!--TABLE_DEPENSE_("/")-->
 <div class="container pt-5">
 <h4>Liste des Dépenses</h4>
   <table class="table table-bordered">
@@ -84,7 +85,7 @@
       {% endfor %}
 
       <tr>
-        <td class="add">
+        <td class="button_add">
           <a href="/page3">AJOUTER DEPENSE</a>
           <a href="/page3" class="fa-solid fa-circle-plus"></a>
         </td>
