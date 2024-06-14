@@ -2,18 +2,18 @@ body{
   margin: auto;
 }
 .head h1{
-  color: rgb(218, 203, 5);
+  color: #D1C000;
   font-weight: bold;
 }
 
 .head span, p{
-  color: #25554d;
+  color: #0C5E69;
   font-weight: bold;
 }
 
 /** TABLE_BUDGET **/
 .col-md-4 .p-2 {
-  background-color: #25554d;
+  background-color: #0C5E69;
   color: white;
   box-shadow: 2px 0 2px rgb(100, 100, 100);
 }
@@ -25,7 +25,7 @@ body{
 
 /** TABLE_REVENU_&_DEPENSE **/
 .container h4{
-  color: rgb(218, 203, 5);
+  color: #D1C000;
 }
 
 .col-title {
@@ -41,7 +41,7 @@ body{
 }
 
 .colorer th{
-  background-color: #25554d;
+  background-color: #0C5E69;
   color: white;
 }
 
@@ -49,11 +49,16 @@ body{
 /** BUTTON_ADD **/
 .button_add a{
   text-decoration: none;
-  color: rgb(218, 203, 5);
+  color: #D1C000;
 }
 
 
 /** style_FORMULE_ADD **/
+
+/**style_title_formulaire**/
+.text-center{
+  color: #0C5E69;
+}
 .formul div{
   max-width: 40%;
   margin:auto;
@@ -61,12 +66,19 @@ body{
   padding-top: 1rem;
 }
 
+.formul label{
+  color: #0C5E69;
+}
 
 /** BUTTON_VALIDATION **/
+
+
 .validation button{
   width: 100%;
   border: none;
   margin:auto; 
+  background-color: #0C5E69;
+  color: white;
 }
 
 

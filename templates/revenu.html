@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h4 class="text-center text-success mt-5">Liste des Revenus</h4>
+<h4 class="text-center  mt-5">Liste des Revenus</h4>
 <form action="{{ url_for('table_revenu') }}" method="POST">
   <input type="hidden" name="type_data" value="revenu">
 {% include "partials/_form.html" %}

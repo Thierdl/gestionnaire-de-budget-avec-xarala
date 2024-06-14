@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h4 class="text-center text-success mt-5">Liste des Dépenses</h4>
+<h4 class="text-center mt-5">Liste des Dépenses</h4>
 <div class="container">
   <form action="{{ url_for('table_depense') }}" method="POST">
     <input type="hidden" name="type_data" value="depense">
